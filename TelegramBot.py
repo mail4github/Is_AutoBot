@@ -14,10 +14,10 @@ import asyncio
 from datetime import datetime
 import subprocess
 import hashlib
-from PIL import Image  # python3 -m pip install pillow
-import fnmatch
-import random
-import io
+#from PIL import Image  # python3 -m pip install pillow
+#import fnmatch
+#import random
+#import io
 
 thread_activity_interval = 3  # seconds
 checking_results_in_thread_activity_every_secs = 60  # seconds
