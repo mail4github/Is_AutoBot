@@ -41,8 +41,6 @@ git init &&
 git remote add origin git@github.com:mail4github/Is_AutoBot.git &&
 git checkout -b main &&
 git config core.fileMode false &&
-git pull git@github.com:mail4github/Is_AutoBot.git main &&
-git config core.fileMode false &&
 git config user.email "mail4github@advertising-page.com" &&
 git config user.name "Pavel J" &&
 git branch --set-upstream-to=origin/main main
