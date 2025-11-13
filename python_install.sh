@@ -1,15 +1,20 @@
 apt update &&
 apt -y install python3-pip &&
-echo -e "\033[34m installing environment \033[0m" &&
+echo -e "\033[34m installing environment \033[0m"
+
+pip install --upgrade pip
+pip install --upgrade virtualenv
+
 apt -y install python3.12-venv
 apt -y install python3.10-venv
-python3 -m pip install --user virtualenv &&
+python3 -m pip install --user virtualenv
+
 echo -e "\033[34m creating environment \033[0m" &&
-python3 -m venv . &&
+python3 -m venv .
 echo -e "\033[34m activate \033[0m" &&
-source bin/activate &&
+source bin/activate
 echo -e "\033[34m install python-telegram-bot \033[0m" &&
-python3 -m pip install python-telegram-bot &&
+python3 -m pip install python-telegram-bot
 #echo -e "\033[34m install langdetect \033[0m" &&
 #python3 -m pip install langdetect &&
 echo -e "\033[34m install requests \033[0m" &&
