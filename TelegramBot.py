@@ -19,7 +19,6 @@ import fnmatch
 import random
 import io
 
-
 thread_activity_interval = 3  # seconds
 checking_results_in_thread_activity_every_secs = 60  # seconds
 run_script_after_secs = 50
