@@ -304,7 +304,7 @@ def thread_activity(application):
             time.sleep(thread_activity_interval)
 
             save_activity_file_for_watchdog()
-
+            '''
             # ask for a messages to post on channel
             res = get_api_values({
                 'custom_command': 'get_message_for_posting',
@@ -322,7 +322,7 @@ def thread_activity(application):
                     ),
                     current_active_loop
                 )    
-                
+            '''    
             time.sleep(thread_activity_interval)
             
         except BaseException as e:
