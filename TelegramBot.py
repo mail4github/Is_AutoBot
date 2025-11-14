@@ -484,10 +484,33 @@ async def send_a_text(update: Update, context: ContextTypes.DEFAULT_TYPE, comman
         )
 
 async def get_phone_number(update: Update, context: ContextTypes.DEFAULT_TYPE, command_arr: list = None) -> None:
-    keyboard = [[KeyboardButton(text="Share my contact", request_contact=True)]]
+    keyboard = [[KeyboardButton(text=languages_arr['share_contact'][channel_language], request_contact=True)]]
     reply_markup = ReplyKeyboardMarkup(keyboard)
     
     await update.effective_message.reply_text(languages_arr['get_phone_number'][channel_language], reply_markup=reply_markup)
+
+async def contact_callback(bot, update):
+    contact = bot.effective_message.contact
+    contact_arr = {
+        'phone': '',
+        'first_name': '',
+        'last_name': ''
+    }
+    try:
+        if contact.phone_number:
+            contact_arr['phone'] = ('+' if contact.phone_number[0] != '+' else '') + contact.phone_number
+        if contact.first_name:
+            contact_arr['first_name'] = contact.first_name
+        if contact.last_name:
+            contact_arr['last_name'] = contact.last_name
+    except:
+        pass
+    await bot.effective_message.reply_text(
+        languages_arr['contact_received'][channel_language].format(**contact_arr),
+        parse_mode='HTML', 
+        disable_notification=True,
+        disable_web_page_preview=True
+    )
 
 commands_arr = [
     ['start', start],
@@ -544,6 +567,9 @@ application.add_handler(CallbackQueryHandler(button))
 
 # Handing Incoming Messages
 application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, message_handler_function))
+
+# Handing Contact info
+application.add_handler(MessageHandler(filters.CONTACT, contact_callback))
 
 # Error Handling if any
 application.add_error_handler(error_handler_function)
